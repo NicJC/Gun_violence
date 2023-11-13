@@ -13,15 +13,19 @@ guns <- fread("C:/R/Mass_Shootings.csv")
 
 
 
-#guns %>% 
- # filter(data_year > 2007) %>% 
-  #ggplot() +
-  #geom_point(mapping = aes(x =  data_year , y = victim_count , col  = as.factor(data_year))) + 
-  #labs(title = "Victims by Year" , col = "Year" , x = "Year" , y = "Victims" , subtitle = "Increase in violence by years") +
- # scale_x_continuous(n.breaks = 8) +
+guns %>% 
+  select(c(1,2,3,6,7)) %>%   ggplot() +
+  
+  geom_point(mapping = aes(x = as.factor(guns$State) , y = guns$`Victims Killed` , col = as.factor(State))) + 
+  labs(title = "Gun Violence" , color = "State" , y = "Victims Killed" , x = "State") + 
+  theme(axis.text.x = element_text(face="bold", color="black", 
+                                   size=12, angle=90),
+        axis.text.y = element_text(face="bold",  color="black", 
+                                   size=12))+ 
+  theme(text = element_text(size = 18)) +
  # scale_y_continuous(n.breaks = 8)
 
-#ggsave("Victims by Year.png", width = 6, height = 6)
+ggsave("Victims by State.png", width = 15, height = 13)
 
 
 
